@@ -57,14 +57,14 @@ export class AnalyticsService {
     const clicksByDate= Array.from({length:7}).map((_,idx)=>{
       const today = new Date();
       today.setDate(today.getDate()-idx);
-      return {
-        date:today.toISOString().split('T')[0],
-        clickCount:urls.flatMap(url=>url.clicks).filter(click=>click.createdAt.toISOString().split('T')[0]===today.toISOString().split('T')[0]).length
-      }
+      return {[today.toISOString().split('T')[0]]: urls.map((topicUrl)=>({
+        url:topicUrl.longUrl,
+        clickCount:topicUrl.clicks.filter(click=>click.createdAt.toISOString().split('T')[0]===today.toISOString().split('T')[0]).length
+      }))}
     })
     const urlsStats = urls.map(topic=>{
 
-      const currentShortUrl = topic.shortUrl;
+      const currentShortUrl = topic.longUrl;
       const totalClicks = topic.analytics.reduce((prev,curr)=>prev+curr.clicks,0)
       const uniqueUsers = new Set(topic.clicks.map(click=>click.ipAddress)).size;
       return {
