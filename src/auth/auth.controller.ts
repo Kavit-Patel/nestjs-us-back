@@ -23,7 +23,7 @@ export class AuthController{
         const {token} = await this.authService.generateJwt(user)
         res.cookie('jwt.connect.sid',token,{
             path:"/",
-            sameSite:"none",
+            sameSite:process.env.NODE_ENV==="production"?"none":"lax",
             httpOnly:true,
             secure:process.env.NODE_ENV==="production",
             maxAge:7*24*24*60*1000,
@@ -47,7 +47,7 @@ export class AuthController{
         res.clearCookie('jwt.connect.sid',{
             path: '/', 
             secure: process.env.NODE_ENV==="production",
-            sameSite: 'none',
+            sameSite: process.env.NODE_ENV==="production"?"none":"lax",
           })
         res.redirect('/')
     }

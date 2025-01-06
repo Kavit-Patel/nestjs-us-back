@@ -23,7 +23,7 @@ export class AuthService{
     }
     
     async findUser(id:string){
-        return await this.prisma.user.findUnique({where:{id},include:{urls:true}})
+        return await this.prisma.user.findUnique({where:{id},include:{urls:{include:{topic:true}}}})
     }
 
 }
