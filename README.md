@@ -1,85 +1,79 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Backend Repository: URL Shortener Nestjs
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
+This repository contains the backend service for the **URL Shortener Application**. The backend is built using **NestJS** and provides RESTful APIs for URL shortening, user authentication, analytics, and topic management.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+**Deployed at:** [https://nestjs-us-back.onrender.com](https://nestjs-us-back.onrender.com)
 
-## Description
+## Features
+- **User Management**: Supports user registration, login, and authentication.
+- **URL Shortening**: Converts long URLs into short aliases.
+- **Analytics**: Tracks and provides performance metrics for shortened URLs.
+- **Topics Management**: Allows users to categorize their URLs under specific topics.
+- **Scalable Architecture**: Built with modularized NestJS modules for scalability and maintainability.
+- **Database Integration**: Uses **PostgreSQL** with **Prisma ORM** for seamless database operations.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tech Stack
+- **Framework**: NestJS
+- **Database**: PostgreSQL
+- **ORM**: Prisma
+- **Authentication**: JWT-based authentication
 
-## Project setup
+## Installation
+### Prerequisites
+- Node.js >= 18.x
+- PostgreSQL >= 14.x
+- NPM >= 9.x
 
-```bash
-$ yarn install
-```
+### Steps to Set Up Locally
 
-## Compile and run the project
+1. Clone the repository:
+   git clone <backend-repo-url>
+   cd <backend-repo-folder>
 
-```bash
-# development
-$ yarn run start
+2. Install dependencies:
+   npm install
 
-# watch mode
-$ yarn run start:dev
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add the following variables:
 
-# production mode
-$ yarn run start:prod
-```
+  ALLOWED_ORIGINS=http:localhost:5173,http://localhost:3000,........
+  DATABASE_URL=postgresql://<user>:<password>@<host>:<port>/<database>
+  JWT_SECRET=<your-jwt-secret>
+  FRONTEND_URL=<your-frontend-url>
+  GOOGLE_CLIENT_ID=<your-google-clientId> like ******-******.apps.googleusercontent.com
+  GOOGLE_CLIENT_SECRET=<your-google-client secret>
+  NODE_ENV=development/production
+  BASE_URL = <your-backend-url>
 
-## Run tests
+4. Run database migrations:
+   npx prisma migrate dev
 
-```bash
-# unit tests
-$ yarn run test
+5. Start the development server:
+   npm run start:dev
 
-# e2e tests
-$ yarn run test:e2e
+6. Access the API at:
+   [http://localhost:3001](http://localhost:3001)
 
-# test coverage
-$ yarn run test:cov
-```
+## API Documentation
+https://nestjs-us-back.onrender.com/docs
+- **Swagger Documentation URL**: [https://nestjs-us-back.onrender.com/docs](https://nestjs-us-back.onrender.com/docs)
+Remember to have jwt.connect.sid present in your browser cookie to test protected routes.
+For that you need to successfully login from browser at- [https://nestjs-us-back.onrender.com](https://nestjs-us-back.onrender.com)
 
-## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
+## Contributing
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+1. Fork the repository.
+2. Create a new branch (`git checkout -b Feat/your-feature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin your-feature`).
+5. Open a Pull Request.
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+For further queries, contact [Kavit G. Patel](mailto:kvpatel.er@gmail.com).
